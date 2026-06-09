@@ -654,7 +654,40 @@ initializeApp(firebaseConfig);
 
 console.log("Firebase Connected");
 </script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+
+
+  const firebaseConfig = {
+  apiKey: "AIzaSyA9CMgnVfNHNIIYyxzW4f9Q1an9tiqsTg0s",
+  authDomain: "skillswap-a07bf.firebaseapp.com",
+  projectId: "skillswap-a07bf",
+  storageBucket: "skillswap-a07bf.firebasestorage.app",
+  messagingSenderId: "878631778739",
+  appId: "1:878631778739:web:05887fc5f7a70dc4cd73c6",
+  measurementId: "G-TSR74C74XN"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const loginBtn = document.querySelector(".btn-ghost");
+
+loginBtn.addEventListener("click", async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+
+    alert("Welcome " + result.user.displayName);
+  } catch (error) {
+    console.error(error);
+    alert("Login failed");
+  }
+});
+ </script>
 </body>
 </html>
 
